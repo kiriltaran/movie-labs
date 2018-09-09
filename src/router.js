@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import HomePage from '@/views/HomePage.vue';
+import MoviePage from '@/views/MoviePage.vue';
 
 Vue.use(Router);
 
@@ -9,7 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: HomePage,
+    },
+    {
+      path: '/movie/{id}',
+      name: 'movie',
+      component: MoviePage,
     },
   ],
 });
