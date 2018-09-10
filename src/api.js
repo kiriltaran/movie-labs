@@ -23,6 +23,24 @@ const api = {
       url: '/genre/movie/list',
     }).then(response => response.data);
   },
+  getMovieInfo(id) {
+    return request({
+      method: 'GET',
+      url: `/movie/${id}`,
+      params: {
+        movie_id: id,
+      },
+    }).then(response => response.data);
+  },
+  getRelatedMovies(id) {
+    return request({
+      method: 'GET',
+      url: `/movie/${id}/similar`,
+      params: {
+        movie_id: id,
+      },
+    }).then(response => response.data);
+  },
 };
 
 export default api;

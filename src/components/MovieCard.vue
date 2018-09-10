@@ -1,54 +1,50 @@
 <template>
   <el-card
-    :body-style="{ padding: '0' }"
+    :body-style="{ padding: '0', display: 'flex', height: '100%' }"
     shadow="hover"
     class="movie-card"
   >
-    <el-row
-      type="flex" 
-      justify="space-between"
-    >
-      <el-col :span="11">
-        <div class="poster">
-          <img 
-            :src="`http://image.tmdb.org/t/p/w185/${movie.poster_path}`" 
-            class="poster-image">
+    <div class="poster">
+      <img 
+        :src="`http://image.tmdb.org/t/p/w185/${movie.poster_path}`" 
+        class="poster-image"
+      >
+    </div>
+    <div class="info">
+      <div class="title">
+        {{ movie.title }}
+      </div>
+      <div class="vote">
+        {{ movie.vote_average }}
+      </div>
+      <div class="genre">
+        <div>
+          Genre:
         </div>
-      </el-col>
-      <el-col :span="13">
-        <div class="info">
-          <div class="title">
-            {{ movie.title }}
-          </div>
-          <div class="vote">
-            {{ movie.vote_average }}
-          </div>
-          <div class="genre">
-            Genre:
-            <el-tag 
-              v-for="genreId in movie.genre_ids"
-              :key="genreId"
-              size="small"
-              class="genre-tag"
-            >
-              {{ allGenres[genreId] }}
-            </el-tag>
-          </div>
-          <div class="actions">
-            <el-button 
-              type="text" 
-              icon="el-icon-star-off"
-              class="fav-btn"
-            />
-            <el-button 
-              type="text" 
-              class="more-btn">
-              More
-            </el-button>
-          </div>
-        </div> 
-      </el-col>
-    </el-row>
+        <el-tag 
+          v-for="genreId in movie.genre_ids"
+          :key="genreId"
+          size="small"
+          class="genre-tag"
+        >
+          {{ allGenres[genreId] }}
+        </el-tag>
+      </div>
+      <div class="actions">
+        <el-button 
+          type="text" 
+          icon="el-icon-star-off"
+          class="fav-btn"
+        />
+        <el-button 
+          type="text" 
+          class="more-btn"
+          @click="onClickMore"
+        >
+          More
+        </el-button>
+      </div>
+    </div>
   </el-card>
 </template>
 
@@ -66,6 +62,12 @@ export default {
       return this.$store.getters.GENRES;
     },
   },
+  methods: {
+    onClickMore() {
+      this.$router.push({ name: 'movie', params: { id: this.movie.id } });
+      this.$forceUpdate();
+    },
+  },
 };
 </script>
 
@@ -77,15 +79,20 @@ export default {
 }
 
 .poster {
+  width: 40%;
   &-image {
+    vertical-align: middle;
+    width: 100%;
     height: 100%;
   }
 }
 
 .info {
-  position: relative;
-  height: 100%;
-  padding: 20px 5px;
+  width: 60%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .title {
     text-align: center;
     font-size: 18px;
@@ -111,11 +118,8 @@ export default {
   }
 
   .actions {
-    width: 90%;
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    bottom: 45px;
 
     .fav-btn {
       font-size: 20px;

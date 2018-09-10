@@ -60,6 +60,10 @@ export default {
 .movies {
   &-item {
     margin-bottom: 40px;
+
+    .movie-card {
+      height: 270px;
+    }
   }
 }
 </style>

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loading: false,
-    genres: [],
+    genres: {},
   },
   mutations: {
     SET_GENRES(state, payload) {
@@ -17,7 +17,7 @@ export default new Vuex.Store({
         result[item.id] = item.name;
       }
       // eslint-disable-next-line no-param-reassign
-      state.genres = result;
+      state.genres = { ...result };
     },
     SET_LOADING(state, payload) {
       // eslint-disable-next-line no-param-reassign
