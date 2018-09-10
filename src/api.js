@@ -41,6 +41,16 @@ const api = {
       },
     }).then(response => response.data);
   },
+  getMoviesByGenre(id, page) {
+    return request({
+      method: 'GET',
+      url: '/discover/movie',
+      params: {
+        with_genres: id,
+        page,
+      },
+    }).then(response => response.data);
+  },
 };
 
 export default api;

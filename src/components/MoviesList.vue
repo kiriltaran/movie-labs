@@ -16,7 +16,8 @@
     </el-row>
     <el-pagination
       :page-size="20"
-      :total="totalNumber"
+      :current-page="pageNumber"
+      :total="totalNumber > 20000 ? 20000 : totalNumber"
       background
       layout="prev, pager, next"
       @current-change="onChangePage"
@@ -43,7 +44,7 @@ export default {
       type: Number,
       default: 0,
     },
-    page: {
+    pageNumber: {
       type: Number,
       default: 1,
     },

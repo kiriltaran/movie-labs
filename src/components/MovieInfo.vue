@@ -26,6 +26,7 @@
                 v-for="genre in movie.genres"
                 :key="genre.id"
                 class="genre-tag"
+                @click.native="onClickGenre(genre.id)"
               >
                 {{ genre.name }}
               </el-tag>
@@ -51,7 +52,6 @@
               <span 
                 v-for="country in movie.production_countries"
                 :key="country.name"
-                class="genre-tag"
               >
                 {{ country.name }}
               </span>
@@ -77,7 +77,11 @@ export default {
       required: true,
     },
   },
-  methods: {},
+  methods: {
+    onClickGenre(id) {
+      this.$router.push({ name: 'genre', params: { id } });
+    },
+  },
 };
 </script>
 
@@ -109,6 +113,10 @@ export default {
 
 .genre-tag {
   margin-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
 

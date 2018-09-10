@@ -26,6 +26,7 @@
           :key="genreId"
           size="small"
           class="genre-tag"
+          @click.native="onClickGenre(genreId)"
         >
           {{ allGenres[genreId] }}
         </el-tag>
@@ -66,6 +67,9 @@ export default {
     onClickMore() {
       this.$router.push({ name: 'movie', params: { id: this.movie.id } });
       this.$forceUpdate();
+    },
+    onClickGenre(id) {
+      this.$router.push({ name: 'genre', params: { id } });
     },
   },
 };
@@ -114,6 +118,10 @@ export default {
     &-tag {
       margin-right: 5px;
       margin-bottom: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
