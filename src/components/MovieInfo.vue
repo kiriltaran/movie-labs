@@ -14,7 +14,15 @@
       </el-col>
       <el-col :span="18">
         <div class="info">
-          <div class="info-title">{{ movie.title }}</div>
+          <div class="info-title">
+            {{ movie.title }}
+            <el-button 
+              :icon="isInFavorites ? 'el-icon-star-on' : 'el-icon-star-off'" 
+              type="text"
+              class="fav-btn"
+              @click="onClickFavorite"
+            />
+          </div>
           <div class="info-item">
             <div class="key">Release date:</div>
             <div class="value">{{ movie.release_date }}</div>
@@ -77,9 +85,17 @@ export default {
       required: true,
     },
   },
+  computed: {
+    isInFavorites() {
+      return this.$store.getters.FAVORITES.includes(this.movie.id);
+    },
+  },
   methods: {
     onClickGenre(id) {
       this.$router.push({ name: 'genre', params: { id } });
+    },
+    onClickFavorite() {
+      this.$store.dispatch('toggleFavorite', this.movie.id);
     },
   },
 };
@@ -98,6 +114,10 @@ export default {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 80px;
+
+    .fav-btn {
+      font-size: 28px;
+    }
   }
 
   &-item {

@@ -1,5 +1,12 @@
 <template>
   <div class="home-page">
+    <div class="title">Favorites</div>
+    <movies-list 
+      :movies="movies" 
+      :total-number="totalNumber"
+      @change-page="onChangePage"
+    />
+    <div class="title">Popular</div>
     <movies-list 
       :movies="movies" 
       :total-number="totalNumber"

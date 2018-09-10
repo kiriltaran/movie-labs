@@ -32,6 +32,7 @@
         </el-tag>
       </div>
       <div class="actions">
+        <!-- favorite button should be separeted component -->
         <el-button 
           :icon="isInFavorites ? 'el-icon-star-on' : 'el-icon-star-off'" 
           type="text"

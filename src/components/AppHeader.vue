@@ -1,8 +1,11 @@
 <template>
   <el-header class="header">
-    <el-row 
-      type="flex" 
-      justify="space-between">
+    <el-menu
+      :default-active="$route.path"
+      :router="true"
+      mode="horizontal"
+      class="menu"
+    >
       <a 
         href="/" 
         class="logo">
@@ -12,8 +15,11 @@
           class="logo-image"
         >
       </a>
-      <search-input/>
-    </el-row>
+      <el-menu-item index="/">Popular</el-menu-item>
+      <el-menu-item index="/favorites">Favorites</el-menu-item>
+      <search-input class="search"/>
+    </el-menu>
+    
   </el-header>
 </template>
 
@@ -31,14 +37,23 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  background-color: #eee;
   line-height: 60px;
 
   .logo {
+    float: left;
     height: 60px;
+    margin-right: 20px;
     &-image {
       height: 100%;
     }
+  }
+
+  .menu {
+    height: 100%;
+  }
+
+  .search {
+    float: right;
   }
 }
 </style>

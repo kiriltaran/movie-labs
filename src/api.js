@@ -35,7 +35,7 @@ const api = {
   getRelatedMovies(id) {
     return request({
       method: 'GET',
-      url: `/movie/${id}/similar`,
+      url: `/movie/${id}/similar`, // API have another endpoint /movie/{movie_id}/recommendations
       params: {
         movie_id: id,
       },
