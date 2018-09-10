@@ -51,6 +51,15 @@ const api = {
       },
     }).then(response => response.data);
   },
+  searchMovies(query) {
+    return request({
+      method: 'GET',
+      url: '/search/movie',
+      params: {
+        query,
+      },
+    }).then(response => response.data);
+  },
 };
 
 export default api;

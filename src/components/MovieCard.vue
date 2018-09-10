@@ -66,7 +66,6 @@ export default {
   methods: {
     onClickMore() {
       this.$router.push({ name: 'movie', params: { id: this.movie.id } });
-      this.$forceUpdate();
     },
     onClickGenre(id) {
       this.$router.push({ name: 'genre', params: { id } });

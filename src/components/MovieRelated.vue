@@ -1,6 +1,8 @@
 <template>
   <div class="movie-related">
-    <div class="title">Related movies</div>
+    <div 
+      v-if="isVisibleTitle" 
+      class="title">Related movies</div>
     <el-row :gutter="20">
       <el-col 
         v-for="movie in movies" 
@@ -27,6 +29,11 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  computed: {
+    isVisibleTitle() {
+      return this.movies.length > 0;
     },
   },
 };
