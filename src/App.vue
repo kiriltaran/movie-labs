@@ -15,6 +15,7 @@
 
 <script>
 import AppHeader from '@/components/AppHeader.vue';
+import { getItem } from '@/helpers/ls';
 
 export default {
   name: 'App',
@@ -28,10 +29,17 @@ export default {
   },
   mounted() {
     this.loadGenres();
+    this.initFavorites();
   },
   methods: {
     loadGenres() {
       this.$store.dispatch('loadGenres');
+    },
+    initFavorites() {
+      const favorites = getItem('favorites');
+      if (favorites) {
+        this.$store.dispatch('setFavorites', favorites);
+      }
     },
   },
 };

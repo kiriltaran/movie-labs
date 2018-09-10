@@ -1,4 +1,4 @@
-# muvi-labs
+# movie-labs
 
 ## Project setup
 

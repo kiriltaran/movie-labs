@@ -28,14 +28,15 @@
           class="genre-tag"
           @click.native="onClickGenre(genreId)"
         >
-          {{ allGenres[genreId] }}
+          {{ genres[genreId] }}
         </el-tag>
       </div>
       <div class="actions">
         <el-button 
-          type="text" 
-          icon="el-icon-star-off"
+          :icon="isInFavorites ? 'el-icon-star-on' : 'el-icon-star-off'" 
+          type="text"
           class="fav-btn"
+          @click="onClickFavorite"
         />
         <el-button 
           type="text" 
@@ -59,8 +60,11 @@ export default {
     },
   },
   computed: {
-    allGenres() {
+    genres() {
       return this.$store.getters.GENRES;
+    },
+    isInFavorites() {
+      return this.$store.getters.FAVORITES.includes(this.movie.id);
     },
   },
   methods: {
@@ -69,6 +73,9 @@ export default {
     },
     onClickGenre(id) {
       this.$router.push({ name: 'genre', params: { id } });
+    },
+    onClickFavorite() {
+      this.$store.dispatch('toggleFavorite', this.movie.id);
     },
   },
 };
