@@ -1,5 +1,6 @@
 <template>
   <div class="favorites-page">
+    <h2 class="title">Favorites</h2>
     <movies-list 
       :movies="movies" 
       :total-number="favorites.length"
